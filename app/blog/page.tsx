@@ -5,7 +5,7 @@ import type { BlogPost } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Blog — AI Voice Generator Reviews & Guides",
-  description: "Deep dives, comparisons, guides, and honest opinions on AI voice tools from the VoiceToolsReview team.",
+  description: "Deep dives, comparisons, guides, and honest opinions on AI voice tools from the AI Voice Review team.",
 };
 
 const CATEGORIES: { value: BlogPost["category"] | "all"; label: string }[] = [

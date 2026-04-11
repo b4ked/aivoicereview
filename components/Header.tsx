@@ -78,7 +78,7 @@ export default function Header() {
               letterSpacing: "-0.02em",
             }}
           >
-            VoiceToolsReview
+            AI Voice Review
           </span>
         </Link>
 

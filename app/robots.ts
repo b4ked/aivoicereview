@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://voicetoolsreview.com/sitemap.xml",
+    sitemap: "https://aivoicereview.com/sitemap.xml",
   };
 }

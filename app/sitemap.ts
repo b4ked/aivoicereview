@@ -7,7 +7,7 @@ import { getAllBestOfs } from "@/lib/best-of";
 import { getAllBlogPosts } from "@/lib/blog";
 import { getAllPosts } from "@/lib/content";
 
-const BASE_URL = "https://voicetoolsreview.com";
+const BASE_URL = "https://aivoicereview.com";
 const LAST_MODIFIED = new Date("2026-04-01");
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -41,7 +41,7 @@ export default function Footer() {
               About
             </h3>
             <p style={{ fontSize: "13px", lineHeight: "1.7", margin: 0 }}>
-              VoiceToolsReview is an independent review site for AI voice generation tools. We test every product
+              AI Voice Review is an independent review site for AI voice generation tools. We test every product
               ourselves and earn commission through affiliate links.
             </p>
           </div>
@@ -136,12 +136,12 @@ export default function Footer() {
           }}
         >
           <p style={{ margin: 0, fontSize: "12px", color: "#64748b" }}>
-            <strong style={{ color: "#475569" }}>Affiliate disclosure:</strong> VoiceToolsReview participates in
+            <strong style={{ color: "#475569" }}>Affiliate disclosure:</strong> AI Voice Review participates in
             affiliate programmes. We may earn a commission when you purchase through our links at no extra cost to you.
             This does not influence our reviews or rankings.
           </p>
           <p style={{ margin: 0, fontSize: "12px", color: "#64748b" }}>
-            © {year} VoiceToolsReview. All rights reserved.
+            © {year} AI Voice Review. All rights reserved.
           </p>
         </div>
       </div>

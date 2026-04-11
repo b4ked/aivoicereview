@@ -12,14 +12,14 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "VoiceToolsReview — Independent AI Voice Generator Reviews",
-    template: "%s | VoiceToolsReview",
+    default: "AI Voice Review — Independent AI Voice Generator Reviews",
+    template: "%s | AI Voice Review",
   },
   description:
     "Independent, hands-on reviews of AI voice generation tools. We test ElevenLabs, Murf, PlayHT and more — with real content, real pricing breakdowns, and honest verdicts.",
-  metadataBase: new URL("https://voicetoolsreview.com"),
+  metadataBase: new URL("https://aivoicereview.com"),
   openGraph: {
-    siteName: "VoiceToolsReview",
+    siteName: "AI Voice Review",
     type: "website",
   },
 };

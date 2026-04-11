@@ -7,11 +7,11 @@ import { getAllGuides } from "@/lib/guides";
 import { getAllBlogPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "VoiceToolsReview — Independent AI Voice Generator Reviews",
+  title: "AI Voice Review — Independent AI Voice Generator Reviews",
   description:
-    "The independent resource for AI voice generation. We test ElevenLabs, Murf, PlayHT and more with real content, real pricing breakdowns, and honest verdicts.",
+    "The independent resource for AI voice generation. We test ElevenLabs, Murf, PlayHT and more with real credits, real content, and honest verdicts. No sponsored rankings.",
   openGraph: {
-    title: "VoiceToolsReview — Independent AI Voice Generator Reviews",
+    title: "AI Voice Review — Independent AI Voice Generator Reviews",
     description:
       "Honest, hands-on reviews of the best AI voice generators. Compare pricing, quality, and features without the marketing spin.",
     type: "website",
@@ -25,58 +25,101 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Hero — pure static, no event handlers */}
+      {/* Hero */}
       <section
         style={{
           background: "#0f172a",
           color: "#ffffff",
-          padding: "80px 24px 72px",
+          padding: "88px 24px 80px",
           textAlign: "center",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <div style={{ maxWidth: "720px", margin: "0 auto" }}>
-          <div
-            style={{
-              display: "inline-block",
-              background: "rgba(59,130,246,0.15)",
-              border: "1px solid rgba(59,130,246,0.3)",
-              color: "#93c5fd",
-              fontSize: "12px",
-              fontWeight: 600,
-              padding: "4px 12px",
-              borderRadius: "20px",
-              marginBottom: "20px",
-              letterSpacing: "0.06em",
-              textTransform: "uppercase",
-            }}
-          >
+        {/* Subtle background glow */}
+        <div style={{
+          position: "absolute",
+          top: "-120px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "600px",
+          height: "400px",
+          background: "radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }} />
+
+        <div style={{ maxWidth: "760px", margin: "0 auto", position: "relative" }}>
+          {/* Badge */}
+          <div style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "6px",
+            background: "rgba(59,130,246,0.12)",
+            border: "1px solid rgba(59,130,246,0.25)",
+            color: "#93c5fd",
+            fontSize: "12px",
+            fontWeight: 600,
+            padding: "5px 14px",
+            borderRadius: "20px",
+            marginBottom: "28px",
+            letterSpacing: "0.05em",
+            textTransform: "uppercase",
+          }}>
+            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#3b82f6", display: "inline-block" }} />
             Independent Reviews — Updated April 2026
           </div>
-          <h1
-            style={{
-              fontSize: "clamp(2rem, 5vw, 3rem)",
-              fontWeight: 800,
-              lineHeight: 1.15,
-              margin: "0 0 20px",
-              letterSpacing: "-0.03em",
-            }}
-          >
-            The Independent AI Voice Review Site
+
+          {/* Headline */}
+          <h1 style={{
+            fontSize: "clamp(2.2rem, 5.5vw, 3.25rem)",
+            fontWeight: 800,
+            lineHeight: 1.12,
+            margin: "0 0 24px",
+            letterSpacing: "-0.03em",
+          }}>
+            Find the Best{" "}
+            <span style={{ color: "#3b82f6" }}>AI Voice Generator</span>
+            {" "}for Your Use Case
           </h1>
-          <p
-            style={{
-              fontSize: "18px",
-              color: "#94a3b8",
-              lineHeight: 1.7,
-              margin: "0 0 36px",
-            }}
-          >
-            We test AI voice generators with real credits, real content, and real use cases. No sponsored rankings, no
-            marketing spin — just honest comparisons to help you choose the right tool.
+
+          {/* Subhead */}
+          <p style={{
+            fontSize: "19px",
+            color: "#94a3b8",
+            lineHeight: 1.7,
+            margin: "0 0 16px",
+            maxWidth: "600px",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}>
+            We test ElevenLabs, Murf, PlayHT and more with real paid credits and real content.
+            No sponsored rankings. No marketing spin.
           </p>
+
+          {/* Trust signals row */}
+          <div style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "24px",
+            marginBottom: "40px",
+            flexWrap: "wrap",
+          }}>
+            {[
+              { icon: "🧪", label: "Tested with real credits" },
+              { icon: "🚫", label: "No sponsored rankings" },
+              { icon: "📅", label: "Updated regularly" },
+            ].map((s) => (
+              <div key={s.label} style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "13px", color: "#64748b" }}>
+                <span>{s.icon}</span>
+                <span>{s.label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* CTAs */}
           <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
             <a
-              href="/reviews/elevenlabs"
+              href="/best-of/best-ai-voice-generator"
               style={{
                 background: "#3b82f6",
                 color: "#ffffff",
@@ -85,24 +128,39 @@ export default function HomePage() {
                 fontWeight: 700,
                 fontSize: "15px",
                 textDecoration: "none",
+                boxShadow: "0 4px 14px rgba(59,130,246,0.35)",
               }}
             >
-              Read ElevenLabs Review →
+              See Top Picks →
             </a>
             <a
               href="/compare/elevenlabs-vs-murf"
               style={{
-                background: "transparent",
+                background: "rgba(255,255,255,0.06)",
                 color: "#ffffff",
                 padding: "14px 28px",
                 borderRadius: "8px",
-                fontWeight: 700,
+                fontWeight: 600,
                 fontSize: "15px",
                 textDecoration: "none",
-                border: "2px solid rgba(255,255,255,0.25)",
+                border: "1px solid rgba(255,255,255,0.15)",
               }}
             >
-              Compare Tools →
+              Compare Tools
+            </a>
+            <a
+              href="/reviews/elevenlabs"
+              style={{
+                background: "transparent",
+                color: "#64748b",
+                padding: "14px 20px",
+                borderRadius: "8px",
+                fontWeight: 500,
+                fontSize: "14px",
+                textDecoration: "none",
+              }}
+            >
+              ElevenLabs Review →
             </a>
           </div>
         </div>
