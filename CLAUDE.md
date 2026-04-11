@@ -62,10 +62,18 @@ GitHub Actions workflow: `.github/workflows/vercel_deploy.yml`
 - `VERCEL_PROJECT_ID_AIVOICEREVIEW` = `prj_xs0FtzhSxHq7aiZW14jkFHWR85ew`
 
 ### Vercel Env Vars
-- `NEXTAUTH_SECRET`, `NEXTAUTH_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`
-- `RESEND_API_KEY`, `NEWSLETTER_FROM_EMAIL`, `NEWSLETTER_FROM_NAME`
+- `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `ADMIN_SECRET` (DNA base auth — **not** NextAuth-style vars)
+- `CRON_SECRET` (authenticates newsletter cron calls)
+- `RESEND_API_KEY`, `RESEND_AUDIENCE_ID`
+- `NEWSLETTER_EDITION`, `NEWSLETTER_FROM_EMAIL`, `NEWSLETTER_FROM_NAME`, `NEWSLETTER_RECIPIENT_EMAIL`
+- `VERCEL_TOKEN` (for analytics API calls from admin panel)
 - `VPS_API_URL` = `https://api.parrytech.co/aivoicereview-scheduler`
-- `VPS_API_SECRET` (matches VPS_API_KEY)
+- `VPS_API_SECRET` (matches `VPS_API_KEY` on VPS)
+
+### Blog draft schema
+Drafts live in `/drafts/` (root level). Use `**Field:** value` format:
+- `**Title:**`, `**Slug:**`, `**Meta description:**`, `**Focus keyword:**`, `**Secondary keywords:**`
+- File naming: `NN-slug-here.md` (numbered, kebab-case)
 
 ---
 
