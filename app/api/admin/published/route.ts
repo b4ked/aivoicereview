@@ -1,1 +1,1 @@
-export { PublishedMeta, GET } from '../../../../base/src/app/api/admin/published/route'
+export { GET } from '../../../../base/src/app/api/admin/published/route'
