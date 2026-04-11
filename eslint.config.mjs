@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // base/ is a git subtree — never modify directly; ignore scheduler (Node.js, not frontend)
+    "base/scheduler/**",
   ]),
 ]);
 

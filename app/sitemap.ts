@@ -5,6 +5,7 @@ import { getAllUseCases } from "@/lib/use-cases";
 import { getAllGuides } from "@/lib/guides";
 import { getAllBestOfs } from "@/lib/best-of";
 import { getAllBlogPosts } from "@/lib/blog";
+import { getAllPosts } from "@/lib/content";
 
 const BASE_URL = "https://voicetoolsreview.com";
 const LAST_MODIFIED = new Date("2026-04-01");
@@ -76,6 +77,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const mdxBlogRoutes: MetadataRoute.Sitemap = getAllPosts("blog").map((p) => ({
+    url: `${BASE_URL}/blog/${p.slug}`,
+    lastModified: new Date(p.updatedAt),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
   return [
     ...staticRoutes,
     ...reviewRoutes,
@@ -85,5 +93,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...bestOfRoutes,
     ...blogIndexRoute,
     ...blogPostRoutes,
+    ...mdxBlogRoutes,
   ];
 }

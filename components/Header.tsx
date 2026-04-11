@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 const navLinks = [
   { label: "Reviews", href: "/reviews/elevenlabs" },
@@ -46,7 +47,7 @@ export default function Header() {
         }}
       >
         {/* Logo */}
-        <a
+        <Link
           href="/"
           style={{
             display: "flex",
@@ -79,7 +80,7 @@ export default function Header() {
           >
             VoiceToolsReview
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <nav
@@ -122,7 +123,7 @@ export default function Header() {
             onMouseEnter={() => setBlogDropdownOpen(true)}
             onMouseLeave={() => setBlogDropdownOpen(false)}
           >
-            <a
+            <Link
               href="/blog"
               style={{
                 color: blogDropdownOpen ? "#ffffff" : "#94a3b8",
@@ -152,7 +153,7 @@ export default function Header() {
               >
                 <path d="M1 3l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" />
               </svg>
-            </a>
+            </Link>
 
             {blogDropdownOpen && (
               <div

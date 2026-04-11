@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import HomepageInteractive from "@/components/HomepageInteractive";
 import BlogCard from "@/components/BlogCard";
 import { getAllReviews } from "@/lib/reviews";
@@ -145,7 +146,7 @@ export default function HomePage() {
                 Deep dives, tutorials, and honest opinions on AI voice tools.
               </p>
             </div>
-            <a
+            <Link
               href="/blog"
               style={{
                 color: "#3b82f6",
@@ -156,7 +157,7 @@ export default function HomePage() {
               }}
             >
               View all articles →
-            </a>
+            </Link>
           </div>
           <div
             style={{
