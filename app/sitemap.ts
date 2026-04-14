@@ -8,7 +8,7 @@ import { getAllBlogPosts } from "@/lib/blog";
 import { getAllPosts } from "@/lib/content";
 
 const BASE_URL = "https://aivoicereview.com";
-const LAST_MODIFIED = new Date("2026-04-01");
+const LAST_MODIFIED = new Date("2026-04-14");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -17,12 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: LAST_MODIFIED,
       changeFrequency: "weekly",
       priority: 1.0,
-    },
-    {
-      url: `${BASE_URL}/privacy`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: "yearly",
-      priority: 0.2,
     },
   ];
 
