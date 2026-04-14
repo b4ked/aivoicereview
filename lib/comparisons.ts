@@ -28,8 +28,8 @@ export const comparisons: Comparison[] = [
       { feature: "Background Music", toolA: "❌", toolB: "✅" },
       { feature: "Unlimited Plan", toolA: "❌ (credit-based)", toolB: "✅ Enterprise" },
     ],
-    affiliateUrlA: "#affiliate", // TODO: replace with real ElevenLabs affiliate URL
-    affiliateUrlB: "#affiliate", // TODO: replace with real Murf affiliate URL
+    affiliateUrlA: "https://try.elevenlabs.io/wm6bdi8z8jza",
+    affiliateUrlB: "https://get.murf.ai/rbobu1iktka4",
   },
   {
     slug: "elevenlabs-vs-playht",
@@ -58,7 +58,7 @@ export const comparisons: Comparison[] = [
       { feature: "Voice Library", toolA: "1,000+ voices", toolB: "900+ voices" },
       { feature: "Ultra-Realistic Model", toolA: "✅ Multilingual v2", toolB: "✅ PlayHT 2.0" },
     ],
-    affiliateUrlA: "#affiliate", // TODO: replace with real ElevenLabs affiliate URL
+    affiliateUrlA: "https://try.elevenlabs.io/wm6bdi8z8jza",
     affiliateUrlB: "#affiliate", // TODO: replace with real PlayHT affiliate URL
   },
   {
@@ -87,7 +87,7 @@ export const comparisons: Comparison[] = [
       { feature: "API access", toolA: "✅ From Starter", toolB: "⚠️ Limited" },
       { feature: "Team collaboration", toolA: "❌", toolB: "✅ Creator and above" },
     ],
-    affiliateUrlA: "#affiliate", // TODO: replace with real ElevenLabs affiliate URL
+    affiliateUrlA: "https://try.elevenlabs.io/wm6bdi8z8jza",
     affiliateUrlB: "#affiliate", // TODO: replace with real Descript affiliate URL
   },
   {
@@ -115,7 +115,7 @@ export const comparisons: Comparison[] = [
       { feature: "Projects / long-form editing", toolA: "✅", toolB: "❌" },
       { feature: "Commercial use", toolA: "✅ All paid plans", toolB: "✅ With attribution/terms" },
     ],
-    affiliateUrlA: "#affiliate", // TODO: replace with real ElevenLabs affiliate URL
+    affiliateUrlA: "https://try.elevenlabs.io/wm6bdi8z8jza",
     affiliateUrlB: "#affiliate",
   },
   {
@@ -144,7 +144,7 @@ export const comparisons: Comparison[] = [
       { feature: "Mid plan", toolA: "$26/mo (48 hrs/yr)", toolB: "$48/mo (unlimited)" },
       { feature: "API access", toolA: "Enterprise only", toolB: "⚠️ Limited" },
     ],
-    affiliateUrlA: "#affiliate", // TODO: replace with real Murf affiliate URL
+    affiliateUrlA: "https://get.murf.ai/rbobu1iktka4",
     affiliateUrlB: "#affiliate", // TODO: replace with real LOVO affiliate URL
   },
 ];

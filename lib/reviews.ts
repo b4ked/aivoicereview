@@ -115,7 +115,7 @@ export const reviews: Review[] = [
         ],
       },
     ],
-    affiliateUrl: "#affiliate", // TODO: replace with real affiliate URL
+    affiliateUrl: "https://try.elevenlabs.io/wm6bdi8z8jza",
     updatedAt: "April 2026",
     testedWith: "50,000 characters across 6 voice presets, 2 cloned voices, and the Projects feature",
     sections: [
@@ -272,7 +272,7 @@ export const reviews: Review[] = [
         features: ["Unlimited audio", "Custom voice cloning", "SSO", "Dedicated support", "API access"],
       },
     ],
-    affiliateUrl: "#affiliate", // TODO: replace with real affiliate URL
+    affiliateUrl: "https://get.murf.ai/rbobu1iktka4",
     updatedAt: "April 2026",
     testedWith: "30 minutes of audio generation across corporate, e-learning, and podcast voice styles",
     sections: [
