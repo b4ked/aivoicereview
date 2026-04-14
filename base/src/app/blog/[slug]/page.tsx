@@ -11,14 +11,23 @@ import { CTABlock } from '@/components/common/CTABlock'
 import { InfoCallout } from '@/components/common/InfoCallout'
 import { NewsletterSignup } from '@/components/common/NewsletterSignup'
 import { AffiliateDisclosure } from '@/components/trust/AffiliateDisclosure'
+import { EditorialNote } from '@/components/trust/EditorialNote'
 import { LastUpdated } from '@/components/trust/LastUpdated'
 import { ArticleSchema } from '@/components/seo/ArticleSchema'
 import { FAQSchema } from '@/components/seo/FAQSchema'
+import { ProsConsList } from '@/components/comparison/ProsConsList'
+import { QuickVerdict } from '@/components/comparison/QuickVerdict'
+import { AffiliateLink } from '@/components/common/AffiliateLink'
 import Link from 'next/link'
 
 // MDX components available inside .mdx files
 const mdxComponents = {
   InfoCallout,
+  CTABlock,
+  EditorialNote,
+  ProsConsList,
+  QuickVerdict,
+  AffiliateLink,
 }
 
 // Derive a display label from a category slug

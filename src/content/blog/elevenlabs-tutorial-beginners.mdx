@@ -14,42 +14,117 @@ Everything a first-time ElevenLabs user needs to know: sign-up, voice selection,
 
 ## Step 1: Sign Up and Understand the Dashboard
 
-Go to elevenlabs.io and click Sign Up. You can register with a Google account, GitHub, or a standard email and password. Once registered, you're automatically on the free plan — no credit card required. You get 10,000 characters per month to work with from day one.
+Go to elevenlabs.io and click **Sign Up**. You can register with a Google account, GitHub, or a standard email and password. Once registered, you're automatically on the free plan — no credit card required. You get **10,000 characters per month** to work with from day one.
 
-The dashboard has four main sections in the left navigation. Speech is the basic text-to-speech generator — you type text, pick a voice, generate audio. Projects is the long-form narration editor for content longer than a few paragraphs (this requires Creator plan or above). Voices is your voice library where you can browse pre-made voices and manage any custom voices you create. Studio contains additional tools including Dubbing for multilingual content.
+The dashboard has four main sections in the left navigation:
 
+- **Speech** — the basic text-to-speech generator. Type text, pick a voice, generate audio.
+- **Projects** — the long-form narration editor for content longer than a few paragraphs (requires Creator plan or above).
+- **Voices** — your voice library where you can browse pre-made voices and manage custom voices you create.
+- **Studio** — additional tools including Dubbing for multilingual content.
+
+<InfoCallout type="tip" title="Watch your character counter">
 The character counter in the top area of the interface shows your remaining monthly allowance. Keep an eye on this as you learn — it's easy to spend characters quickly when experimenting and regenerating.
+</InfoCallout>
 
 ## Step 2: Choose Your Voice
 
-Click the voice selector in the Speech interface — it's typically showing a default voice name near the text input area. A panel opens showing the voice library. You can filter by gender, age, accent, use case (narration, news, conversational, etc.), and language. With over 1,000 voices in the library, filtering is essential unless you enjoy scrolling indefinitely.
+Click the voice selector in the Speech interface — it's typically showing a default voice name near the text input area. A panel opens showing the voice library. You can filter by:
 
-Each voice has a preview button that plays a short sample. Listen to the preview, but don't rely on it too heavily — the preview clip is typically chosen to show the voice at its best, and your content may produce different results. The first rule of voice selection: test with your actual content, not with the preview.
+- Gender
+- Age
+- Accent
+- Use case (narration, news, conversational, etc.)
+- Language
 
-For general-purpose narration, these voices consistently perform well: Rachel (American English, warm and natural, great for educational and conversational content), Josh (American English, authoritative, good for news-style and documentary), Charlotte (British English, professional, good for corporate and formal content), and Liam (American English, clear and energetic, good for marketing and upbeat content). Don't spend more than 15 minutes choosing on your first session — pick one and generate something. Voice selection is iterative.
+With over 1,000 voices in the library, filtering is essential unless you enjoy scrolling indefinitely.
+
+Each voice has a preview button that plays a short sample. Listen to the preview, but don't rely on it too heavily — the preview clip is typically chosen to show the voice at its best, and your content may produce different results.
+
+<InfoCallout type="tip" title="The first rule of voice selection">
+Test with your actual content, not with the preview.
+</InfoCallout>
+
+For general-purpose narration, these voices consistently perform well:
+
+| Voice | Accent | Best For |
+|-------|--------|----------|
+| Rachel | American English (warm, natural) | Educational and conversational content |
+| Josh | American English (authoritative) | News-style and documentary |
+| Charlotte | British English (professional) | Corporate and formal content |
+| Liam | American English (clear, energetic) | Marketing and upbeat content |
+
+Don't spend more than 15 minutes choosing on your first session — pick one and generate something. Voice selection is iterative.
 
 ## Step 3: Generate and Download Your First Audio
 
-Type or paste your text into the large text field in the Speech interface. The character counter updates as you type to show you the cost of generating this text. When you're ready, click Generate and wait. For texts under 500 characters, generation typically takes 2–4 seconds. Longer texts take proportionally longer — a 2,000-character passage might take 8–15 seconds.
+1. Type or paste your text into the large text field in the Speech interface. The character counter updates as you type to show you the cost of generating this text.
+2. Click **Generate** and wait. For texts under 500 characters, generation typically takes 2–4 seconds. A 2,000-character passage might take 8–15 seconds.
+3. When generation completes, the audio player appears below the text field. Hit play to listen.
+4. If it sounds good, click the **download button** (the downward arrow icon) to save the MP3 file.
 
-When generation completes, the audio player appears below the text field. Hit play to listen. If it sounds good, click the download button (typically a downward arrow icon) to save the MP3 file. Default export is MP3 at 128kbps. Higher bitrate options are available in the settings if you need studio-quality files.
+Default export is MP3 at 128kbps. Higher bitrate options are available in the settings if you need studio-quality files.
 
-If something sounds wrong — a word is mispronounced, the pacing feels odd, the emotion doesn't match the content — click Generate again. The same text produces slightly different results each time due to the model's sampling approach. Two or three regenerations usually produces one version noticeably better than the others. On the free plan, be selective about regenerating — each attempt costs characters. On a paid plan, regeneration is cheap enough that you should always generate 2–3 versions for anything that will be publicly published.
+<EditorialNote type="warning" title="Regeneration costs characters">
+If something sounds wrong — a word is mispronounced, the pacing feels odd — click Generate again. The same text produces slightly different results each time due to the model's sampling approach. On the free plan, be selective about regenerating — each attempt costs characters. On a paid plan, regeneration is cheap enough that you should always generate 2–3 versions for anything that will be publicly published.
+</EditorialNote>
+
+<AffiliateLink provider="ElevenLabs" href="https://try.elevenlabs.io/wm6bdi8z8jza">Try ElevenLabs free — no credit card required</AffiliateLink>
 
 ## Step 4: Understand Voice Settings
 
-Click the gear or settings icon near the voice selector to access voice settings. Three sliders control the character of your generation: Stability, Similarity Boost, and Style Exaggeration.
+Click the gear or settings icon near the voice selector to access voice settings. Three sliders control the character of your generation:
 
-**Stability** (0–100%) controls how consistent the voice is between different generations of the same text. Lower stability means more variation and potentially more expressiveness — the voice is more likely to emphasise or colour different parts of the text. Higher stability means more predictable, consistent output but can sound flat. For conversational content, 30–50% works well. For formal narration where consistency matters, 60–80% is safer.
+### Stability (0–100%)
 
-**Similarity Boost** (0–100%) controls how closely the output adheres to the trained voice characteristics. For pre-made voices, keeping this at 75% or above prevents drift from the expected voice quality. For cloned voices, higher similarity boost helps preserve the specific characteristics that make the clone recognisable.
+Controls how consistent the voice is between different generations of the same text.
 
-**Style Exaggeration** (0–100%) is turned off by default and should stay that way for most use cases. It amplifies the expressive characteristics of the voice, which can add punch to dramatic content but sounds unnatural on informational narration. Experiment with values of 10–30% if you're producing content that needs emotional range.
+- **Lower stability** = more variation and expressiveness — the voice is more likely to emphasise different parts of the text.
+- **Higher stability** = more predictable, consistent output but can sound flat.
+
+<InfoCallout type="tip">
+For conversational content, 30–50% works well. For formal narration where consistency matters, 60–80% is safer.
+</InfoCallout>
+
+### Similarity Boost (0–100%)
+
+Controls how closely the output adheres to the trained voice characteristics.
+
+- For pre-made voices, keep this at **75% or above** to prevent drift from the expected voice quality.
+- For cloned voices, higher similarity boost helps preserve the specific characteristics that make the clone recognisable.
+
+### Style Exaggeration (0–100%)
+
+Turned off by default and should stay that way for most use cases. It amplifies the expressive characteristics of the voice.
+
+<EditorialNote type="warning">
+Style Exaggeration can add punch to dramatic content but sounds unnatural on informational narration. If you experiment, try values of 10–30% for content that needs emotional range.
+</EditorialNote>
 
 ## Step 5: Long-Form Content with Projects
 
-The Speech interface is designed for short to medium-length content — individual clips, paragraphs, short scripts. For anything longer than a few hundred words — a full video script, a podcast episode, a book chapter — the Projects feature is the right tool. Note: Projects requires Creator plan or above at $22/month.
+The Speech interface is designed for short to medium-length content — individual clips, paragraphs, short scripts. For anything longer than a few hundred words — a full video script, a podcast episode, a book chapter — **Projects** is the right tool.
 
-Navigate to Projects in the left sidebar and create a new project. Give it a name that corresponds to your piece of content. Paste your full text. ElevenLabs automatically breaks the text into paragraphs, each shown as a separate segment you can control individually.
+<InfoCallout type="deadline" title="Projects requires Creator plan">
+Projects is available on Creator plan ($22/month) or above. It's not included in the free or Starter tiers.
+</InfoCallout>
 
-Listen through the segments. For any that don't sound right, click the regenerate button on that individual segment — only that segment is regenerated, and everything else stays intact. This surgical approach to regeneration is the key advantage of Projects over the standard Speech interface for long content. Once you're satisfied with all segments, use the Export button to download the full audio as a single stitched file. You can choose MP3 or WAV format and set the export quality.
+Here's how to use Projects:
+
+1. Navigate to **Projects** in the left sidebar and create a new project.
+2. Give it a name that corresponds to your piece of content.
+3. Paste your full text. ElevenLabs automatically breaks the text into paragraphs, each shown as a separate segment you can control individually.
+4. Listen through the segments. For any that don't sound right, click the **regenerate button** on that individual segment — only that segment is regenerated, everything else stays intact.
+5. Once satisfied with all segments, use the **Export** button to download the full audio as a single stitched file. Choose MP3 or WAV format and set the export quality.
+
+<InfoCallout type="tip" title="Why Projects beats Speech for long content">
+The surgical per-segment regeneration is the key advantage of Projects. You don't re-spend characters on sections that already sound good.
+</InfoCallout>
+
+<CTABlock
+  heading="Ready to start generating?"
+  description="ElevenLabs offers 10,000 free characters per month — enough to produce your first 10 minutes of audio with no credit card required."
+  primaryCta={{ label: "Try ElevenLabs Free", href: "https://try.elevenlabs.io/wm6bdi8z8jza" }}
+  secondaryCta={{ label: "See all pricing plans", href: "/blog/elevenlabs-pricing-explained" }}
+  variant="brand"
+/>

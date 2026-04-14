@@ -16,40 +16,98 @@ A complete practical guide to cloning your voice with ElevenLabs — from record
 
 Before recording anything, decide which type of cloning you're targeting. ElevenLabs offers two fundamentally different cloning capabilities, and they have very different input requirements and output quality.
 
-**Instant Voice Cloning** works with as little as 1 minute of audio. It's available from the Starter plan at $5/month. The output is a functional voice clone that captures the broad characteristics of your voice — general pitch, timbre, and pacing. It works well for experimentation and low-stakes applications. For public-facing content where critical listeners might notice, it has limitations — particularly on unusual phoneme sequences and emotional range.
+| Feature | Instant Voice Cloning | Professional Voice Cloning |
+|---|---|---|
+| Minimum audio required | 1 minute | 30 minutes (3 hours recommended) |
+| Available from | Starter plan ($5/month) | Creator tier add-on |
+| Output quality | Functional — broad characteristics | High fidelity — handles novel sentences naturally |
+| Best for | Experimentation, low-stakes use | Public-facing content, brand voice |
 
-**Professional Voice Cloning** requires a minimum of 30 minutes of high-quality audio, with up to 3 hours recommended. It's available as an add-on at Creator tier. The output quality is in a different class — handling novel sentences with consistent natural delivery, preserving your specific vocal characteristics across a wide range of content types. This is what you want for public-facing content that needs to represent your voice credibly.
+**Instant Voice Cloning** captures the broad characteristics of your voice — general pitch, timbre, and pacing. It works well for experimentation and low-stakes applications. For public-facing content where critical listeners might notice, it has limitations — particularly on unusual phoneme sequences and emotional range.
+
+**Professional Voice Cloning** is in a different class. It preserves your specific vocal characteristics across a wide range of content types, handling novel sentences with consistent, natural delivery. This is what you want for public-facing content that needs to represent your voice credibly.
 
 ## Recording Requirements: Getting the Source Audio Right
 
 The quality of your voice clone is directly determined by the quality of your source audio. Poor source recordings produce poor clones — ElevenLabs' model cannot compensate for acoustic noise, microphone proximity issues, or recording inconsistencies.
 
-**Microphone:** A USB condenser microphone at the $50–$100 price point (Blue Snowball, Audio-Technica AT2020 USB) is sufficient for professional cloning. A dynamic microphone is fine if you already use one for podcasting. Built-in laptop microphones and phone microphones are not suitable — the frequency response is too narrow and the background noise rejection is insufficient.
+### Microphone
 
-**Environment:** Record in the quietest space available. Room echo is worse than ambient noise for cloning purposes — a small room with soft furnishings (bedroom, closet) is better than a large empty room. HVAC noise, street noise, and intermittent sounds should be eliminated or minimised. ElevenLabs' processing handles minor background noise but not persistent interference.
+<InfoCallout type="tip" title="Microphone recommendation">
+A USB condenser microphone at the $50–$100 price point (Blue Snowball, Audio-Technica AT2020 USB) is sufficient for professional cloning. A dynamic microphone is fine if you already use one for podcasting.
+</InfoCallout>
 
-**What to say:** Read a variety of text types — factual statements, questions, lists, conversational sentences, emotional content. Variety in your source material produces a more versatile clone. Avoid reading the same type of content repeatedly. For professional cloning targeting 30–60 minutes, include multiple sessions recorded on different days to capture natural variation in your voice rather than the vocal fatigue state of a single long session.
+Built-in laptop microphones and phone microphones are **not suitable** — the frequency response is too narrow and the background noise rejection is insufficient.
+
+### Environment
+
+<EditorialNote type="warning" title="Room echo is your biggest enemy">
+Room echo is worse than ambient noise for cloning purposes. A small room with soft furnishings (bedroom, closet) is better than a large empty room. HVAC noise, street noise, and intermittent sounds should be eliminated or minimised. ElevenLabs' processing handles minor background noise but not persistent interference.
+</EditorialNote>
+
+### What to Say
+
+<InfoCallout type="tip" title="Vary your content types">
+Read a variety of text types — factual statements, questions, lists, conversational sentences, emotional content. Variety in your source material produces a more versatile clone. Avoid reading the same type of content repeatedly.
+</InfoCallout>
+
+For professional cloning targeting 30–60 minutes, include multiple sessions recorded on different days to capture natural variation in your voice rather than the vocal fatigue state of a single long session.
 
 ## The Upload and Training Process
 
-Once you have your recordings, go to the Voices section in your ElevenLabs dashboard and select Add Voice, then Voice Cloning. For Instant Cloning, upload your audio files (MP3 or WAV accepted, maximum file size applies) and enter a name for the voice. Processing takes 2–5 minutes. For Professional Cloning, the same upload process applies but training takes longer — typically 24–48 hours for large source audio collections.
+1. Go to the **Voices** section in your ElevenLabs dashboard
+2. Select **Add Voice**, then **Voice Cloning**
+3. For Instant Cloning: upload your audio files (MP3 or WAV accepted) and enter a name — processing takes 2–5 minutes
+4. For Professional Cloning: same upload process, but training takes 24–48 hours for large source audio collections
+5. Confirm the consent declaration that you have the rights to clone the voice being uploaded
+6. After training completes, **test the clone** with a variety of content types before using it in production
 
-ElevenLabs will ask you to confirm that you have the rights to clone the voice being uploaded. This is a legal consent step, not a formality — you're confirming ownership of the voice. Read the consent text carefully. Using this feature to clone someone else's voice without their explicit permission violates ElevenLabs' Terms of Service and in many jurisdictions carries legal risk under emerging voice deepfake legislation.
+<EditorialNote type="warning" title="Consent step is legally significant">
+ElevenLabs will ask you to confirm that you have the rights to clone the voice being uploaded. This is a legal consent step, not a formality. Using this feature to clone someone else's voice without their explicit permission violates ElevenLabs' Terms of Service and in many jurisdictions carries legal risk under emerging voice deepfake legislation.
+</EditorialNote>
 
-After training completes, test the clone with a variety of content types before using it in production. Pay particular attention to: phonemes that are unusual in your source language, sentence types not well represented in your training data, and emotional range. Any systematic weaknesses will be apparent quickly.
+After training, pay particular attention to: phonemes that are unusual in your source language, sentence types not well represented in your training data, and emotional range. Any systematic weaknesses will be apparent quickly.
 
 ## Getting Better Quality From Your Clone
 
-Several settings significantly affect clone output quality. In the voice settings panel for your cloned voice, start with Similarity Boost at around 80–85% — this keeps the output close to your recorded voice characteristics. Stability around 50–60% allows natural variation without producing inconsistent output. Experiment with these settings on a test script before committing to a production session.
+<InfoCallout type="tip" title="Recommended voice settings">
+Start with **Similarity Boost at 80–85%** — this keeps the output close to your recorded voice characteristics. Set **Stability around 50–60%** to allow natural variation without producing inconsistent output. Experiment with these on a test script before committing to a production session.
+</InfoCallout>
 
-Write scripts in a style consistent with how you naturally speak. Your clone will handle content similar to your training data more accurately than content with vocabulary or sentence structures absent from the source. If you have a conversational natural speaking style but your training data was mostly formal scripted content, your clone will perform better on formal content than on conversational material. Record training data that matches the content type you'll actually be generating.
+A few additional quality tips:
 
-For long-form content, use the Projects feature rather than the standard Speech interface. Projects lets you regenerate individual sentences without affecting surrounding audio, which is essential for managing clone quality across long documents where some sentences will inevitably perform less well than others.
+- **Match your training data to your intended content.** If you have a conversational speaking style but your training data was mostly formal scripted content, your clone will perform better on formal content. Record training data that matches the content type you'll actually be generating.
+- **Use Projects for long-form content.** The Projects feature lets you regenerate individual sentences without affecting surrounding audio — essential for managing clone quality across long documents.
+- **Write scripts in a style consistent with how you naturally speak.** Your clone handles content similar to your training data more accurately than unfamiliar vocabulary or sentence structures.
 
 ## Ethical and Legal Considerations
 
-Voice cloning sits at a genuinely complex intersection of technology and ethics. The practical rules are fairly clear for personal use: clone your own voice, use it for your own content, don't use it to impersonate anyone or misrepresent who is speaking. ElevenLabs enforces this through their Terms of Service and active monitoring.
+Voice cloning sits at a genuinely complex intersection of technology and ethics. The practical rules are fairly clear for personal use:
 
-For commercial use — licensing your cloned voice for others to use, using a celebrity or public figure's voice in commercial content, or using AI voice in contexts where it might be mistaken for a real statement from a real person — the legal landscape is evolving and varies by jurisdiction. Several US states have passed voice deepfake legislation. The EU AI Act has provisions relevant to synthetic voice. Consult legal advice for commercial applications that involve cloned voices of identifiable individuals.
+<ProsConsList
+  pros={[
+    "Clone your own voice for your own content",
+    "Use your voice clone honestly and transparently",
+    "Disclose AI generation when context makes it relevant",
+    "Get written consent before cloning anyone else's voice"
+  ]}
+  cons={[
+    "Clone someone's voice without explicit permission",
+    "Impersonate others or misrepresent who is speaking",
+    "Use AI voice in political or financial content without authorisation",
+    "Claim AI-generated recordings are live when the distinction matters"
+  ]}
+  layout="side-by-side"
+/>
 
-For most creators reading this — cloning their own voice for their own content — the ethical picture is simple: use your voice clone honestly, don't claim recordings are live when they're AI-generated if that distinction matters in context, and keep the consent verification process in mind if you're ever asked to clone someone else's voice for a legitimate purpose.
+For commercial use — licensing your cloned voice for others to use, or using AI voice in contexts where it might be mistaken for a real statement from a real person — the legal landscape is evolving and varies by jurisdiction. Several US states have passed voice deepfake legislation. The EU AI Act has provisions relevant to synthetic voice. Consult legal advice for commercial applications involving cloned voices of identifiable individuals.
+
+<AffiliateLink provider="ElevenLabs" href="https://try.elevenlabs.io/wm6bdi8z8jza">Try ElevenLabs voice cloning free</AffiliateLink> — Instant cloning is available from the Starter plan. Professional cloning is available as an add-on at Creator tier.
+
+<CTABlock
+  heading="Ready to clone your voice?"
+  description="ElevenLabs offers the most capable voice cloning available for creators. Start with Instant Cloning for free, or upgrade to Professional for production-grade results."
+  primaryCta={{ label: "Try ElevenLabs free", href: "https://try.elevenlabs.io/wm6bdi8z8jza" }}
+  secondaryCta={{ label: "Read our full ElevenLabs review", href: "/blog/elevenlabs-review" }}
+  variant="brand"
+/>

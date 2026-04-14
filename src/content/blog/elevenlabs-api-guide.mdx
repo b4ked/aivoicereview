@@ -14,38 +14,143 @@ The ElevenLabs API is well-documented and widely integrated — but is it right 
 
 ## Who Actually Uses the ElevenLabs API?
 
-The ElevenLabs API is used by three distinct groups. The first is application developers: teams building software products that include voice generation as a feature — conversational AI assistants, educational apps with narrated content, accessibility tools, entertainment applications. The second is automation builders: individuals and small teams using tools like Make (formerly Integromat), Zapier, or n8n to automate content production workflows — automatically generating audio from blog posts, creating social content from scripts, or building trigger-based voice notifications. The third is content production teams who prefer API automation over the web interface for batch production at scale.
+The ElevenLabs API is used by three distinct groups:
 
+1. **Application developers** — teams building software products that include voice generation as a feature: conversational AI assistants, educational apps with narrated content, accessibility tools, entertainment applications.
+
+2. **Automation builders** — individuals and small teams using tools like Make (formerly Integromat), Zapier, or n8n to automate content production workflows: automatically generating audio from blog posts, creating social content from scripts, or building trigger-based voice notifications.
+
+3. **Content production teams** — who prefer API automation over the web interface for batch production at scale.
+
+<InfoCallout type="tip" title="Which group are you?">
 Understanding which group you belong to affects which plan tier is appropriate. Automation builders doing moderate volume can often work on the Creator plan. Application developers whose character consumption scales with user activity need to model their usage carefully and typically land on Scale. Content production teams fall somewhere between depending on their volume.
+</InfoCallout>
+
+<InfoCallout type="deadline" title="API requires Starter plan or above">
+API access is not available on the free plan. You'll need at minimum the Starter plan ($5/month) to begin testing with the API.
+</InfoCallout>
 
 ## Key API Endpoints
 
-The ElevenLabs API is REST-based with a clean, consistent structure. The core endpoint you'll use in most applications is the text-to-speech endpoint: POST to /v1/text-to-speech/{voice_id} with a JSON body containing your text, model ID, and voice settings. The response is binary audio data — MP3 by default, with WAV and other formats available via the output_format parameter.
+The ElevenLabs API is REST-based with a clean, consistent structure.
 
-The streaming endpoint at /v1/text-to-speech/{voice_id}/stream uses the same parameters but returns a streaming response — audio chunks are delivered as they're generated rather than waiting for the complete file. This is the appropriate endpoint for interactive and real-time applications where response latency matters.
+### Core text-to-speech endpoint
 
-Voice management endpoints allow you to list available voices, retrieve voice details, add custom voices, and edit voice settings programmatically. These are useful for applications that expose voice selection to users or that need to manage voice libraries as part of their product. The models endpoint lists available generation models and their characteristics — relevant if you need to toggle between quality tiers programmatically.
+```
+POST /v1/text-to-speech/{voice_id}
+```
+
+Send a JSON body containing your text, model ID, and voice settings. The response is binary audio data — MP3 by default, with WAV and other formats available via the `output_format` parameter.
+
+### Streaming endpoint
+
+```
+POST /v1/text-to-speech/{voice_id}/stream
+```
+
+Uses the same parameters but returns a streaming response — audio chunks are delivered as they're generated rather than waiting for the complete file. This is the appropriate endpoint for interactive and real-time applications where response latency matters.
+
+### Voice management endpoints
+
+Allow you to:
+
+- List available voices
+- Retrieve voice details
+- Add custom voices
+- Edit voice settings programmatically
+
+These are useful for applications that expose voice selection to users or that need to manage voice libraries as part of their product.
+
+### Models endpoint
+
+Lists available generation models and their characteristics — relevant if you need to toggle between quality tiers programmatically.
+
+<AffiliateLink provider="ElevenLabs" href="https://try.elevenlabs.io/wm6bdi8z8jza">Start your ElevenLabs free trial before committing to an API plan</AffiliateLink>
 
 ## Rate Limits by Plan
 
-Rate limits are one of the most important practical considerations for API integration, and they vary significantly by plan. The free plan allows a very small number of concurrent requests — unsuitable for anything beyond personal experimentation. The Starter plan opens this up to a few requests per minute, which is adequate for low-volume automation but not for production applications with multiple simultaneous users.
+Rate limits are one of the most important practical considerations for API integration, and they vary significantly by plan.
 
-The Creator plan provides rate limits that comfortably support small-to-medium scale applications — think an app with a few hundred active users and moderate voice generation per session. The Pro plan is where limits become generous enough for serious production traffic. The Scale plan is designed for high-throughput scenarios and includes dedicated rate limit allocations that support meaningful user-facing application traffic.
+| Plan | Rate Limit Tier | Suitable For |
+|------|----------------|--------------|
+| Free | Very limited | Personal experimentation only |
+| Starter | Low (few requests/min) | Low-volume automation |
+| Creator | Medium | Small-to-medium scale apps (hundreds of active users) |
+| Pro | High | Serious production traffic |
+| Scale | Highest (dedicated allocations) | High-throughput user-facing applications |
 
-ElevenLabs charges per character consumed via API exactly the same way as via the web interface. There's no API-specific pricing premium, but there's also no volume discount for API usage versus web usage. Your total character consumption across both interfaces draws from the same monthly pool.
+<EditorialNote type="note" title="No API-specific pricing">
+ElevenLabs charges per character consumed via API exactly the same way as via the web interface. There's no API-specific pricing premium — but there's also no volume discount for API usage versus web usage. Your total character consumption across both interfaces draws from the same monthly pool.
+</EditorialNote>
 
 ## Streaming vs Non-Streaming: Latency Considerations
 
-For most content production automation, the standard non-streaming endpoint is appropriate. You send text, wait for the complete file, use the file. The wait time for a typical 1,000-character script is 2–5 seconds — fast enough for workflows that run in the background.
+### Non-streaming (standard endpoint)
 
-For real-time applications — voice assistants, interactive educational tools, telephone IVR systems, conversational interfaces — streaming latency matters enormously. The streaming endpoint delivers the first audio chunk significantly faster than the total generation time of the complete file, improving perceived responsiveness. ElevenLabs' streaming latency in 2026 is typically 400–700ms to first chunk under normal conditions, which is adequate for many real-time applications.
+For most content production automation, the standard non-streaming endpoint is appropriate:
 
-If sub-300ms first-chunk latency is a hard requirement — which it is for IVR and some voice assistant use cases — PlayHT's streaming endpoint currently outperforms ElevenLabs and should be evaluated for latency-sensitive projects. ElevenLabs is actively working on latency improvements, but the gap exists as of this writing.
+- Send text, wait for the complete file, use the file
+- Wait time for a typical 1,000-character script: **2–5 seconds**
+- Fast enough for workflows that run in the background
+
+### Streaming endpoint
+
+For real-time applications — voice assistants, interactive educational tools, telephone IVR systems, conversational interfaces — streaming latency matters enormously.
+
+<InfoCallout type="tip" title="ElevenLabs streaming performance in 2026">
+ElevenLabs' streaming latency is typically **400–700ms to first chunk** under normal conditions — adequate for many real-time applications.
+</InfoCallout>
+
+<EditorialNote type="warning" title="Latency-sensitive projects">
+If sub-300ms first-chunk latency is a hard requirement — which it is for IVR and some voice assistant use cases — PlayHT's streaming endpoint currently outperforms ElevenLabs and should be evaluated. ElevenLabs is actively working on latency improvements, but the gap exists as of this writing.
+</EditorialNote>
 
 ## ElevenLabs API vs PlayHT API
 
-The practical comparison between ElevenLabs and PlayHT APIs comes down to a few dimensions. Documentation quality: ElevenLabs has better official documentation, more complete SDK support (Python, JavaScript/TypeScript), and a larger community of developers who've written tutorials, examples, and integrations. For developers new to the space, ElevenLabs is the easier starting point.
+The practical comparison comes down to a few dimensions:
 
-Economics: PlayHT's unlimited plan pricing changes the API economics significantly for applications with variable or unpredictable usage. On ElevenLabs, every API call consumes characters from your monthly allowance. On PlayHT unlimited, API calls are included in the flat rate. For applications where voice generation volume is hard to predict or scales with user behaviour, PlayHT's pricing model carries meaningfully less financial risk.
+### Documentation and developer ecosystem
 
-Voice quality: For applications where the voice output is the product — entertainment, accessibility, audiobooks — ElevenLabs' quality advantage matters. For applications where voice is a functional element — navigation prompts, notifications, informational responses — the quality gap is less meaningful and PlayHT is a strong alternative.
+<ProsConsList
+  pros={[
+    "Better official documentation than PlayHT",
+    "More complete SDK support (Python, JavaScript/TypeScript)",
+    "Larger community of developers with tutorials, examples, and integrations",
+    "Easier starting point for developers new to the space"
+  ]}
+  cons={[
+    "Character-based pricing creates unpredictable costs at variable usage volumes",
+    "Higher latency on streaming vs PlayHT for latency-sensitive applications",
+    "No unlimited pricing option for API usage"
+  ]}
+  layout="side-by-side"
+/>
+
+### Economics
+
+PlayHT's unlimited plan pricing changes the API economics significantly for applications with variable or unpredictable usage:
+
+| Scenario | ElevenLabs | PlayHT |
+|----------|-----------|--------|
+| Predictable low volume | Economical | May be overkill |
+| Variable / unpredictable usage | Financial risk as volume scales | Flat rate = no surprises |
+| Very high, predictable volume | Scale plan competitive | Unlimited plan competitive |
+
+<InfoCallout type="info">
+For applications where voice generation volume is hard to predict or scales with user behaviour, PlayHT's pricing model carries meaningfully less financial risk.
+</InfoCallout>
+
+### Voice quality
+
+| Use Case | Recommendation |
+|----------|---------------|
+| Voice is the product (entertainment, accessibility, audiobooks) | ElevenLabs — quality advantage matters |
+| Voice is functional (navigation prompts, notifications, responses) | Either; PlayHT is a strong alternative |
+
+<CTABlock
+  heading="Ready to build with the ElevenLabs API?"
+  description="Start with a free account to explore the interface and voice quality. Upgrade to Starter to unlock API access and begin integration testing."
+  primaryCta={{ label: "Get ElevenLabs API Access", href: "https://try.elevenlabs.io/wm6bdi8z8jza" }}
+  secondaryCta={{ label: "See rate limits by plan", href: "/blog/elevenlabs-pricing-explained" }}
+  variant="brand"
+/>
