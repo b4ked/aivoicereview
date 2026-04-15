@@ -1,21 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-
-const ADMIN_SESSION_COOKIE = 'stg_admin_session'
-
-async function getExpectedToken(secret: string): Promise<string> {
-  const enc = new TextEncoder()
-  const key = await crypto.subtle.importKey(
-    'raw',
-    enc.encode(secret),
-    { name: 'HMAC', hash: 'SHA-256' },
-    false,
-    ['sign']
-  )
-  const sig = await crypto.subtle.sign('HMAC', key, enc.encode('stg-admin-v1'))
-  return Array.from(new Uint8Array(sig))
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('')
-}
+import {
+  ADMIN_SESSION_COOKIE,
+  createAdminSessionToken,
+} from '@/lib/admin-auth'
 
 export async function POST(request: NextRequest) {
   try {
@@ -40,7 +27,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const sessionToken = await getExpectedToken(secret)
+    const sessionToken = await createAdminSessionToken(secret)
 
     const response = NextResponse.json({ success: true })
     response.cookies.set(ADMIN_SESSION_COOKIE, sessionToken, {

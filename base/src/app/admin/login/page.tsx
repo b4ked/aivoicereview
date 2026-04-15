@@ -24,7 +24,14 @@ export default function AdminLoginPage() {
       })
 
       if (res.ok) {
-        router.push('/admin')
+        const nextPath =
+          typeof window === 'undefined'
+            ? null
+            : new URLSearchParams(window.location.search).get('next')
+        const redirectPath =
+          nextPath && nextPath.startsWith('/') ? nextPath : '/admin'
+
+        router.push(redirectPath)
         router.refresh()
       } else {
         const data = await res.json()

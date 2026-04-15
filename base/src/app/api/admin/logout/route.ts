@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server'
-
-const ADMIN_SESSION_COOKIE = 'stg_admin_session'
+import { ADMIN_SESSION_COOKIE } from '@/lib/admin-auth'
 
 export async function POST() {
   const response = NextResponse.json({ success: true })
