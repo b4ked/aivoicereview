@@ -6,6 +6,10 @@ import {
 } from './base/src/lib/admin-auth'
 
 const ADMIN_LOGIN_PATH = '/admin/login'
+const PUBLIC_ADMIN_API_PATHS = new Set([
+  '/api/admin/login',
+  '/api/admin/logout',
+])
 
 function addAdminHeader(request: NextRequest) {
   const requestHeaders = new Headers(request.headers)
@@ -33,6 +37,10 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(url)
     }
 
+    return NextResponse.next()
+  }
+
+  if (PUBLIC_ADMIN_API_PATHS.has(pathname)) {
     return NextResponse.next()
   }
 
