@@ -5,6 +5,7 @@ import BlogCard from "@/components/BlogCard";
 import { getAllReviews } from "@/lib/reviews";
 import { getAllGuides } from "@/lib/guides";
 import { getAllBlogPosts } from "@/lib/blog";
+import { siteConfig } from "@/data/site-config";
 
 export const metadata: Metadata = {
   title: "AI Voice Review — Independent AI Voice Generator Reviews",
@@ -18,6 +19,28 @@ export const metadata: Metadata = {
   },
 };
 
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  description: siteConfig.description,
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  description: siteConfig.description,
+  email: siteConfig.email,
+};
+
+function formatBadgeDate(isoDate: string): string {
+  const d = new Date(isoDate);
+  return d.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+}
+
 export default function HomePage() {
   const reviews = getAllReviews();
   const guides = getAllGuides();
@@ -25,6 +48,12 @@ export default function HomePage() {
 
   return (
     <div>
+      {/* Structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([websiteJsonLd, organizationJsonLd]) }}
+      />
+
       {/* Hero */}
       <section
         style={{
@@ -66,7 +95,7 @@ export default function HomePage() {
             textTransform: "uppercase",
           }}>
             <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#3b82f6", display: "inline-block" }} />
-            Independent Reviews — Updated April 2026
+            Independent Reviews — Updated {formatBadgeDate(siteConfig.lastReviewedDate)}
           </div>
 
           {/* Headline */}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getBestOf, getAllBestOfs } from "@/lib/best-of";
 import { getReview } from "@/lib/reviews";
+import { buildItemListSchema, buildBreadcrumbSchema } from "@/lib/structured-data";
 import ReviewCard from "@/components/ReviewCard";
 
 type Params = Promise<{ slug: string }>;
@@ -31,15 +32,37 @@ export default async function BestOfPage({ params }: { params: Params }) {
 
   const badges = ["#1 Pick", "#2 Pick", "#3 Pick", "#4 Pick", "#5 Pick"];
 
+  const itemListJsonLd = buildItemListSchema(
+    bestOf.title,
+    bestOf.metaDescription,
+    rankedReviews
+      .filter(Boolean)
+      .map((r) => ({
+        name: r!.title.split(" Review")[0],
+        url: `https://aivoicereview.com/reviews/${r!.slug}`,
+      }))
+  );
+  const breadcrumbJsonLd = buildBreadcrumbSchema([
+    { name: "Home", url: "https://aivoicereview.com" },
+    { name: "Best Of", url: "https://aivoicereview.com/best-of" },
+    { name: bestOf.title, url: `https://aivoicereview.com/best-of/${slug}` },
+  ]);
+
   return (
     <div style={{ background: "#ffffff" }}>
+      {/* Structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([itemListJsonLd, breadcrumbJsonLd]) }}
+      />
+
       {/* Header */}
       <div style={{ background: "#0f172a", color: "#ffffff", padding: "48px 24px 40px" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <nav style={{ fontSize: "13px", color: "#64748b", marginBottom: "16px" }}>
             <a href="/" style={{ color: "#64748b", textDecoration: "none" }}>Home</a>
             <span style={{ margin: "0 8px" }}>›</span>
-            <span style={{ color: "#94a3b8" }}>Best Of</span>
+            <a href="/best-of" style={{ color: "#64748b", textDecoration: "none" }}>Best Of</a>
             <span style={{ margin: "0 8px" }}>›</span>
             <span style={{ color: "#94a3b8" }}>{bestOf.title}</span>
           </nav>

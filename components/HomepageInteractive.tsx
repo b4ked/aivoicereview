@@ -46,10 +46,10 @@ export default function HomepageInteractive({ reviews, guides }: HomepageInterac
           }}
         >
           {[
-            { label: "Reviews", href: "/reviews/elevenlabs", emoji: "⭐" },
-            { label: "Compare", href: "/compare/elevenlabs-vs-murf", emoji: "⚖️" },
-            { label: "Use Cases", href: "/use-cases/ai-voice-for-podcasters", emoji: "🎯" },
-            { label: "Guides", href: "/guides/elevenlabs-tutorial-beginners", emoji: "📖" },
+            { label: "Reviews", href: "/reviews", emoji: "⭐" },
+            { label: "Compare", href: "/compare", emoji: "⚖️" },
+            { label: "Use Cases", href: "/use-cases", emoji: "🎯" },
+            { label: "Guides", href: "/guides", emoji: "📖" },
           ].map((item) => (
             <a
               key={item.label}

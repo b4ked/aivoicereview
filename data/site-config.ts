@@ -14,6 +14,6 @@ export const siteConfig: SiteConfig = {
   publisherName: 'AI Voice Review',
   lastReviewedDate: '2026-04-11',
   editorialEmail: 'editorial@aivoicereview.com',
-  mobileCta: { label: 'Compare Tools', href: '/comparisons' },
-  headerCta: { label: 'Compare Tools', href: '/comparisons' },
+  mobileCta: { label: 'Compare Tools', href: '/compare' },
+  headerCta: { label: 'Compare Tools', href: '/compare' },
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getComparison, getAllComparisons } from "@/lib/comparisons";
+import { buildBreadcrumbSchema } from "@/lib/structured-data";
 import ComparisonTable from "@/components/ComparisonTable";
 
 type Params = Promise<{ slug: string }>;
@@ -31,15 +32,30 @@ export default async function ComparePage({ params }: { params: Params }) {
       ? comparison.toolBName
       : null;
 
+  const breadcrumbJsonLd = buildBreadcrumbSchema([
+    { name: "Home", url: "https://aivoicereview.com" },
+    { name: "Compare", url: "https://aivoicereview.com/compare" },
+    {
+      name: `${comparison.toolAName} vs ${comparison.toolBName}`,
+      url: `https://aivoicereview.com/compare/${slug}`,
+    },
+  ]);
+
   return (
     <div style={{ background: "#ffffff" }}>
+      {/* Structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       {/* Header */}
       <div style={{ background: "#0f172a", color: "#ffffff", padding: "48px 24px 40px" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <nav style={{ fontSize: "13px", color: "#64748b", marginBottom: "16px" }}>
             <a href="/" style={{ color: "#64748b", textDecoration: "none" }}>Home</a>
             <span style={{ margin: "0 8px" }}>›</span>
-            <span style={{ color: "#94a3b8" }}>Compare</span>
+            <a href="/compare" style={{ color: "#64748b", textDecoration: "none" }}>Compare</a>
             <span style={{ margin: "0 8px" }}>›</span>
             <span style={{ color: "#94a3b8" }}>{comparison.toolAName} vs {comparison.toolBName}</span>
           </nav>
@@ -81,46 +97,80 @@ export default async function ComparePage({ params }: { params: Params }) {
         />
 
         {/* CTAs */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginTop: "40px" }}>
-          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "24px", textAlign: "center" }}>
-            <div style={{ fontWeight: 700, fontSize: "17px", color: "#0f172a", marginBottom: "8px" }}>{comparison.toolAName}</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-              <a
-                href={`/reviews/${comparison.toolASlug}`}
-                style={{ color: "#3b82f6", fontWeight: 600, fontSize: "14px", textDecoration: "none" }}
-              >
-                Read full review →
-              </a>
-              <a
-                href={comparison.affiliateUrlA}
-                target="_blank"
-                rel="nofollow sponsored noopener noreferrer"
-                style={{ background: "#3b82f6", color: "#ffffff", padding: "10px 20px", borderRadius: "7px", fontWeight: 600, fontSize: "14px", textDecoration: "none" }}
-              >
-                Try {comparison.toolAName} →
-              </a>
+        {(() => {
+          const tools = [
+            { name: comparison.toolAName, slug: comparison.toolASlug, affiliateUrl: comparison.affiliateUrlA, side: "A" as const },
+            { name: comparison.toolBName, slug: comparison.toolBSlug, affiliateUrl: comparison.affiliateUrlB, side: "B" as const },
+          ];
+          return (
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginTop: "40px" }}>
+              {tools.map((tool) => {
+                const isWinner = comparison.winner === tool.side;
+                const isTie = comparison.winner === "tie";
+                return (
+                  <div
+                    key={tool.side}
+                    style={{
+                      background: isWinner ? "#0f172a" : "#f8fafc",
+                      border: isWinner ? "1px solid #3b82f6" : "1px solid #e2e8f0",
+                      borderRadius: "10px",
+                      padding: "24px",
+                      textAlign: "center",
+                      position: "relative",
+                    }}
+                  >
+                    {isWinner && (
+                      <div style={{
+                        position: "absolute",
+                        top: "-12px",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        background: "#3b82f6",
+                        color: "#ffffff",
+                        fontSize: "10px",
+                        fontWeight: 700,
+                        padding: "3px 12px",
+                        borderRadius: "20px",
+                        letterSpacing: "0.06em",
+                        textTransform: "uppercase",
+                        whiteSpace: "nowrap",
+                      }}>
+                        Our Pick
+                      </div>
+                    )}
+                    <div style={{ fontWeight: 700, fontSize: "17px", color: isWinner ? "#ffffff" : "#0f172a", marginBottom: "8px" }}>
+                      {tool.name}
+                    </div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                      <a
+                        href={`/reviews/${tool.slug}`}
+                        style={{ color: isWinner ? "#93c5fd" : "#3b82f6", fontWeight: 600, fontSize: "14px", textDecoration: "none" }}
+                      >
+                        Read full review →
+                      </a>
+                      <a
+                        href={tool.affiliateUrl}
+                        target="_blank"
+                        rel="nofollow sponsored noopener noreferrer"
+                        style={{
+                          background: isWinner ? "#3b82f6" : (isTie ? "#3b82f6" : "#e2e8f0"),
+                          color: isWinner ? "#ffffff" : (isTie ? "#ffffff" : "#475569"),
+                          padding: "10px 20px",
+                          borderRadius: "7px",
+                          fontWeight: 600,
+                          fontSize: "14px",
+                          textDecoration: "none",
+                        }}
+                      >
+                        Try {tool.name} →
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          </div>
-          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "24px", textAlign: "center" }}>
-            <div style={{ fontWeight: 700, fontSize: "17px", color: "#0f172a", marginBottom: "8px" }}>{comparison.toolBName}</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-              <a
-                href={`/reviews/${comparison.toolBSlug}`}
-                style={{ color: "#3b82f6", fontWeight: 600, fontSize: "14px", textDecoration: "none" }}
-              >
-                Read full review →
-              </a>
-              <a
-                href={comparison.affiliateUrlB}
-                target="_blank"
-                rel="nofollow sponsored noopener noreferrer"
-                style={{ background: "#0f172a", color: "#ffffff", padding: "10px 20px", borderRadius: "7px", fontWeight: 600, fontSize: "14px", textDecoration: "none" }}
-              >
-                Try {comparison.toolBName} →
-              </a>
-            </div>
-          </div>
-        </div>
+          );
+        })()}
 
         <p style={{ marginTop: "32px", fontSize: "12px", color: "#94a3b8", lineHeight: 1.6 }}>
           <strong>Affiliate disclosure:</strong> This page contains affiliate links. We may earn a commission if you sign up through our links, at no extra cost to you. Our comparisons are based on independent testing.

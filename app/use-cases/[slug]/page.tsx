@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getUseCase, getAllUseCases } from "@/lib/use-cases";
 import { getReview } from "@/lib/reviews";
+import { buildBreadcrumbSchema } from "@/lib/structured-data";
 import ReviewCard from "@/components/ReviewCard";
 
 type Params = Promise<{ slug: string }>;
@@ -29,15 +30,27 @@ export default async function UseCasePage({ params }: { params: Params }) {
     .map((s) => getReview(s))
     .filter(Boolean);
 
+  const breadcrumbJsonLd = buildBreadcrumbSchema([
+    { name: "Home", url: "https://aivoicereview.com" },
+    { name: "Use Cases", url: "https://aivoicereview.com/use-cases" },
+    { name: useCase.title, url: `https://aivoicereview.com/use-cases/${slug}` },
+  ]);
+
   return (
     <div style={{ background: "#ffffff" }}>
+      {/* Structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       {/* Header */}
       <div style={{ background: "#0f172a", color: "#ffffff", padding: "48px 24px 40px" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
           <nav style={{ fontSize: "13px", color: "#64748b", marginBottom: "16px" }}>
             <a href="/" style={{ color: "#64748b", textDecoration: "none" }}>Home</a>
             <span style={{ margin: "0 8px" }}>›</span>
-            <span style={{ color: "#94a3b8" }}>Use Cases</span>
+            <a href="/use-cases" style={{ color: "#64748b", textDecoration: "none" }}>Use Cases</a>
             <span style={{ margin: "0 8px" }}>›</span>
             <span style={{ color: "#94a3b8" }}>{useCase.title}</span>
           </nav>

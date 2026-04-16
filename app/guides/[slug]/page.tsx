@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getGuide, getAllGuides } from "@/lib/guides";
+import { buildBreadcrumbSchema } from "@/lib/structured-data";
 
 type Params = Promise<{ slug: string }>;
 
@@ -23,15 +24,27 @@ export default async function GuidePage({ params }: { params: Params }) {
   const guide = getGuide(slug);
   if (!guide) notFound();
 
+  const breadcrumbJsonLd = buildBreadcrumbSchema([
+    { name: "Home", url: "https://aivoicereview.com" },
+    { name: "Guides", url: "https://aivoicereview.com/guides" },
+    { name: guide.title, url: `https://aivoicereview.com/guides/${slug}` },
+  ]);
+
   return (
     <div style={{ background: "#ffffff" }}>
+      {/* Structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       {/* Header */}
       <div style={{ background: "#0f172a", color: "#ffffff", padding: "48px 24px 40px" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
           <nav style={{ fontSize: "13px", color: "#64748b", marginBottom: "16px" }}>
             <a href="/" style={{ color: "#64748b", textDecoration: "none" }}>Home</a>
             <span style={{ margin: "0 8px" }}>›</span>
-            <span style={{ color: "#94a3b8" }}>Guides</span>
+            <a href="/guides" style={{ color: "#64748b", textDecoration: "none" }}>Guides</a>
             <span style={{ margin: "0 8px" }}>›</span>
             <span style={{ color: "#94a3b8" }}>{guide.title}</span>
           </nav>
@@ -91,7 +104,7 @@ export default async function GuidePage({ params }: { params: Params }) {
         {/* Related guides */}
         <div style={{ borderTop: "1px solid #e2e8f0", paddingTop: "40px" }}>
           <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "#0f172a", marginBottom: "16px" }}>More guides</h3>
-          <a href="/guides/elevenlabs-tutorial-beginners" style={{ color: "#3b82f6", fontSize: "14px", fontWeight: 500, textDecoration: "none" }}>← Back to all guides</a>
+          <a href="/guides" style={{ color: "#3b82f6", fontSize: "14px", fontWeight: 500, textDecoration: "none" }}>← Back to all guides</a>
         </div>
       </div>
     </div>

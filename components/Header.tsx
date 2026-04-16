@@ -2,13 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { siteConfig } from "@/data/site-config";
+
+const headerCta = siteConfig.headerCta ?? { label: "Compare Tools", href: "/compare" };
 
 const navLinks = [
-  { label: "Reviews", href: "/reviews/elevenlabs" },
-  { label: "Compare", href: "/compare/elevenlabs-vs-murf" },
-  { label: "Use Cases", href: "/use-cases/ai-voice-for-podcasters" },
-  { label: "Guides", href: "/guides/elevenlabs-tutorial-beginners" },
-  { label: "Best Of", href: "/best-of/best-ai-voice-generator" },
+  { label: "Reviews", href: "/reviews" },
+  { label: "Compare", href: "/compare" },
+  { label: "Use Cases", href: "/use-cases" },
+  { label: "Guides", href: "/guides" },
+  { label: "Best Of", href: "/best-of" },
 ];
 
 const blogDropdownLinks = [
@@ -116,6 +119,24 @@ export default function Header() {
               {link.label}
             </a>
           ))}
+
+          {/* CTA button */}
+          <a
+            href={headerCta.href}
+            style={{
+              background: "#3b82f6",
+              color: "#ffffff",
+              padding: "7px 16px",
+              borderRadius: "7px",
+              fontWeight: 600,
+              fontSize: "13px",
+              textDecoration: "none",
+              marginLeft: "8px",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {headerCta.label}
+          </a>
 
           {/* Blog with dropdown */}
           <div
@@ -258,6 +279,27 @@ export default function Header() {
               {link.label}
             </a>
           ))}
+
+          {/* Mobile CTA */}
+          <a
+            href={headerCta.href}
+            style={{
+              display: "block",
+              background: "#3b82f6",
+              color: "#ffffff",
+              padding: "12px 20px",
+              borderRadius: "8px",
+              fontWeight: 700,
+              fontSize: "15px",
+              textDecoration: "none",
+              textAlign: "center",
+              marginTop: "8px",
+              marginBottom: "4px",
+            }}
+            onClick={() => setMobileOpen(false)}
+          >
+            {headerCta.label}
+          </a>
 
           {/* Blog section in mobile */}
           <div>
