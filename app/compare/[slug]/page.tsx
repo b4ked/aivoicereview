@@ -162,7 +162,7 @@ export default async function ComparePage({ params }: { params: Params }) {
                           textDecoration: "none",
                         }}
                       >
-                        Try {tool.name} →
+                        {isWinner ? `Try ${tool.name} — Our Top Pick →` : `Try ${tool.name} →`}
                       </a>
                     </div>
                   </div>

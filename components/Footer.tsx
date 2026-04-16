@@ -87,7 +87,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Company */}
           <div>
             <h3
               style={{
@@ -99,11 +99,13 @@ export default function Footer() {
                 textTransform: "uppercase",
               }}
             >
-              Legal
+              Company
             </h3>
             <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
               {[
+                { label: "About", href: "/about" },
                 { label: "Privacy Policy", href: "/privacy" },
+                { label: "Terms of Service", href: "/terms" },
                 { label: "Affiliate Disclosure", href: "/privacy#affiliate" },
               ].map((link) => (
                 <li key={link.href} style={{ marginBottom: "8px" }}>
