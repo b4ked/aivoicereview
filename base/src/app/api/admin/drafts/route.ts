@@ -73,7 +73,7 @@ export async function GET() {
 
     const files = fs
       .readdirSync(draftsDir)
-      .filter((f) => f.endsWith('.md') || f.endsWith('.mdx'))
+      .filter((f) => (f.endsWith('.md') || f.endsWith('.mdx')) && !f.includes('.published.'))
 
     const drafts: DraftMeta[] = files.map((filename) => {
       const slug = filename.replace(/\.(mdx?$)/, '').replace(/^\d+[a-z]?-/, '')
