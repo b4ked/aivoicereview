@@ -17,7 +17,7 @@ const STATUS_FILE = path.join(__dirname, 'status.json')
 const LOG_FILE = '/var/log/aivoicereview-publish.log'
 const SCRIPT_PATH = path.join(__dirname, 'check-and-publish.sh')
 const DEFAULT_CRON_EXPRESSION = '*/15 * * * *'
-const CRON_MARKER = 'dna-managed-scheduler'
+const CRON_MARKER = 'aivoicereview-dna-managed-scheduler'
 const PAUSED_PREFIX = `# PAUSED ${CRON_MARKER} `
 
 function requireAuth(req, res, next) {
