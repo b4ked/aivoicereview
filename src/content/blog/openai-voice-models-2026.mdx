@@ -1,0 +1,148 @@
+---
+title: "OpenAI's New Voice Models Explained — gpt-realtime-2, Realtime Translate, and Realtime Whisper"
+featuredTool: elevenlabs
+description: "OpenAI launched three new voice models in May 2026. Here is what gpt-realtime-2, Realtime Translate, and Realtime Whisper actually do — and what they mean for developers building voice apps."
+publishedAt: "2026-05-22"
+updatedAt: "2026-05-22"
+author: "VoiceToolsReview Editorial Team"
+category: "guides"
+tags: ["OpenAI voice models 2026", "gpt-realtime-2", "Realtime Translate", "Realtime Whisper", "OpenAI Realtime API", "voice AI news 2026"]
+readingTime: "8 min read"
+affiliateDisclosure: true
+cta:
+  heading: "Building Voice Apps? ElevenLabs Leads on Voice Quality."
+  description: "OpenAI's new voice models advance reasoning and translation. For applications where voice naturalness is the product, ElevenLabs remains the quality benchmark. Free to try."
+  primaryLabel: "Try ElevenLabs Free"
+  primaryHref: "https://try.elevenlabs.io/wm6bdi8z8jza"
+  secondaryLabel: "ElevenLabs API guide for developers"
+  secondaryHref: "/blog/elevenlabs-api-guide"
+faqs:
+  - question: "What new voice models did OpenAI release in May 2026?"
+    answer: "OpenAI released three new models: gpt-realtime-2 (a voice-to-voice reasoning model with GPT-5-class intelligence), Realtime Translate (live speech translation from 70+ languages into 13 output languages), and Realtime Whisper (streaming speech-to-text transcription). All are available through the OpenAI Realtime API."
+  - question: "What is gpt-realtime-2?"
+    answer: "GPT-Realtime-2 is a voice-to-voice model built on GPT-5-class reasoning. Unlike its predecessor, it can handle complex multi-step requests, run parallel tool calls, and produce natural conversational preambles before main responses. It scores 15.2% higher on Big Bench Audio and 13.8% higher on Audio MultiChallenge than gpt-realtime-1.5. It is the first realtime voice model capable of reasoning through hard requests mid-conversation."
+  - question: "How much do OpenAI's new voice models cost?"
+    answer: "gpt-realtime-2 is billed by token: $32 per million audio input tokens and $64 per million audio output tokens. Realtime Translate and Realtime Whisper are billed per minute of audio. Specific per-minute rates are published in OpenAI's API pricing documentation."
+  - question: "How does OpenAI's Realtime API compare to ElevenLabs for voice agents?"
+    answer: "OpenAI's Realtime API provides the intelligence and conversation layer; ElevenLabs provides the voice quality layer. They are not direct competitors — many developers combine OpenAI for LLM intelligence with ElevenLabs for TTS output. gpt-realtime-2's voice output quality is functional but not at ElevenLabs' naturalness level. For voice agents where the intelligence complexity is high, gpt-realtime-2 is compelling. For applications where the voice itself is central to the user experience, ElevenLabs remains the quality benchmark."
+  - question: "What is Realtime Translate?"
+    answer: "Realtime Translate is a streaming speech translation model that translates spoken input from 70+ languages into 13 output languages in real time — keeping pace with the speaker rather than waiting for complete sentences. It is designed for live conversation translation, customer support across languages, and real-time multilingual voice applications."
+relatedPosts:
+  - title: "ElevenLabs API Review 2026"
+    href: "/blog/elevenlabs-api-review-2026"
+  - title: "How to Build a Podcast with the ElevenLabs API"
+    href: "/blog/how-to-build-podcast-with-elevenlabs-api"
+  - title: "Best AI Voice Agent Platforms 2026 — Vapi vs Retell vs ElevenLabs"
+    href: "/blog/best-ai-voice-agent-platforms-2026"
+---
+
+OpenAI released three new voice models in May 2026, and the announcement is worth paying attention to — not because it changes what voice AI can do today, but because it signals clearly where the category is heading.
+
+The three models — gpt-realtime-2, Realtime Translate, and Realtime Whisper — each address a specific layer of the voice AI stack. Here is what they actually do, what they cost, and what they mean for anyone building voice applications.
+
+## The Three New Models
+
+### gpt-realtime-2: Voice Intelligence That Can Actually Reason
+
+The most significant release is gpt-realtime-2. Its predecessor, gpt-realtime-1.5, handled straightforward voice conversations competently but struggled with requests that required multi-step reasoning, ambiguous instructions, or tool calls mid-conversation. gpt-realtime-2 closes that gap.
+
+The key claim: gpt-realtime-2 is built on GPT-5-class reasoning. In practice, that means it can handle the kinds of requests that previously required routing to a text-based model:
+
+- Multi-step instructions with dependencies ("book the appointment, and if the 3pm slot is gone, try 4pm, and if not, send a calendar invite for tomorrow morning")
+- Ambiguous questions that require clarification-gathering before answering
+- Complex workflows with parallel tool calls — the model can trigger multiple integrations simultaneously rather than sequentially
+- Natural conversational preambles — short phrases before the main response that feel like a real person thinking, rather than a system outputting
+
+**Performance numbers OpenAI published:**
+- 15.2% higher than gpt-realtime-1.5 on Big Bench Audio (audio intelligence benchmark)
+- 13.8% higher on Audio MultiChallenge (instruction following benchmark)
+
+The voice quality of gpt-realtime-2 output is functional and clear. It does not match ElevenLabs' prosodic naturalness — the rhythm and emotional colouring that makes AI speech feel most human. For use cases where the intelligence complexity is the hard problem and voice quality is secondary, this is a significant upgrade. For use cases where the voice itself is part of the product experience, the quality gap to ElevenLabs remains meaningful.
+
+<InfoCallout type="tip" title="gpt-realtime-2 is for hard conversations, not beautiful voices">
+Think of gpt-realtime-2 as a reasoning upgrade for voice agents that handle complex requests. If your agent needs to navigate multi-step workflows, handle ambiguous customer queries, or run parallel tool calls mid-conversation — this is meaningful. If your product depends on voice naturalness and emotional quality, ElevenLabs TTS with a separate reasoning LLM still produces better combined results.
+</InfoCallout>
+
+### Realtime Translate: Live Speech Translation at Scale
+
+Realtime Translate is a streaming speech translation model. It takes spoken audio in 70+ input languages and translates it into 13 output languages in real time — while the speaker is talking, not after they finish.
+
+The "realtime" distinction matters. Most translation pipelines work in chunks: wait for a sentence to end, send the audio for translation, receive the translated text, synthesise the speech, play it. Realtime Translate processes audio incrementally, keeping pace with the speaker. The result is a conversation that feels more like a bilingual human exchange and less like a queued processing system.
+
+**Relevant use cases:**
+
+- **Multilingual customer support.** An English-speaking agent handles a Spanish-speaking caller in real time, with translation flowing in both directions.
+- **International voice applications.** A product built for one language market extends to 13 output languages without rebuilding the voice layer.
+- **Live interview or meeting translation.** Not just for voice agents — any application where people speaking different languages need to communicate in real time.
+
+At 70+ input languages and 13 output languages, coverage is competitive but not the broadest available. ElevenLabs supports 70+ languages on its TTS side; for translation specifically, this model is a strong addition to the API toolbox.
+
+### Realtime Whisper: Streaming Transcription
+
+Realtime Whisper is a streaming speech-to-text model. Unlike batch Whisper, which processes complete audio files, Realtime Whisper produces live transcription as the speaker talks — word by word, not utterance by utterance.
+
+This is primarily a developer infrastructure improvement. Existing options like Deepgram Nova-3 already provide streaming STT with strong accuracy. Realtime Whisper's advantage is consolidation: developers who are already in the OpenAI API ecosystem can handle transcription within the same platform rather than routing to a separate STT provider and managing an additional billing relationship.
+
+Accuracy is in line with Deepgram Nova-3 on standard English. Specialised STT providers may maintain advantages on domain-specific vocabulary and accented speech.
+
+<AffiliateLink provider="ElevenLabs" href="https://try.elevenlabs.io/wm6bdi8z8jza" variant="button">Building voice apps? ElevenLabs leads on voice quality — try free today</AffiliateLink>
+
+## Pricing
+
+OpenAI's pricing for the new voice models:
+
+| Model | Billing | Rate |
+|---|---|---|
+| gpt-realtime-2 | Per token | $32/M audio input tokens, $64/M audio output tokens |
+| Realtime Translate | Per minute | See OpenAI pricing page |
+| Realtime Whisper | Per minute | See OpenAI pricing page |
+
+For reference: 1 million audio tokens is roughly 16 hours of audio. A typical customer support call is 3–5 minutes — placing single-call gpt-realtime-2 costs at fractions of a cent for audio processing, before LLM inference costs on the reasoning layer.
+
+The overall per-minute cost of a complete gpt-realtime-2 voice agent deployment — including audio input tokens, audio output tokens, and any tool call overhead — will be competitive with equivalent GPT-4o + ElevenLabs TTS stacks in Vapi or Retell. OpenAI's pricing calculator gives the clearest current projection for your specific use pattern.
+
+## What This Means for Voice Developers
+
+The three releases collectively represent OpenAI completing their stack play in voice. Previously, a developer building a sophisticated voice agent needed:
+- OpenAI for reasoning (GPT-4o via text)
+- A separate realtime audio layer (Vapi, Retell, or custom WebSocket)
+- A TTS provider (ElevenLabs, Cartesia)
+- A STT provider (Deepgram)
+
+With gpt-realtime-2 + Realtime Translate + Realtime Whisper, OpenAI offers:
+- Reasoning-capable voice-to-voice in a single model
+- Live translation built in
+- Streaming STT built in
+
+The consolidation argument is real. Fewer providers, one API, one billing relationship. For teams that prioritise stack simplicity, this is compelling.
+
+<InfoCallout type="info" title="Voice quality remains differentiated — consolidation is not a complete solution">
+Consolidating to OpenAI's stack gains simplicity but currently gives up something on voice naturalness. ElevenLabs' prosodic quality — the richness and human feel of the voice output — remains distinctly ahead of gpt-realtime-2's native voice. For use cases where the quality of the voice is central to the user experience, a combined stack (OpenAI reasoning + ElevenLabs TTS) still produces the best results.
+</InfoCallout>
+
+## How This Changes the Market
+
+The clearest effect is on STT providers. Deepgram, AssemblyAI, and Gladia now compete with a streaming Whisper model embedded inside the largest AI API platform in the market. Developers with no strong reason to use a specialised STT provider will increasingly default to Realtime Whisper for simplicity.
+
+The effect on TTS providers like ElevenLabs is subtler. gpt-realtime-2's voice output is functional — but it was never competing on voice quality, and its May 2026 release did not change that. ElevenLabs' voice naturalness, Expressive Mode, voice cloning, and the full ElevenAgents platform are not replicated by an API model. The competitive pressure is at the developer-convenience layer, not the quality layer.
+
+For voice agent platforms (Vapi, Retell), the consolidation creates a new question: if OpenAI handles reasoning, translation, and STT natively, what is the orchestration layer for? The answer involves telephony, analytics, provider redundancy, and deployment tooling — real value — but the surface area narrows.
+
+## What to Do With This Information
+
+**If you are a developer using Vapi or Retell with GPT-4o + Deepgram + ElevenLabs:**
+Run a benchmarked comparison of gpt-realtime-2 against your current stack on real calls. The reasoning upgrade in gpt-realtime-2 may improve call quality for complex use cases. Retain ElevenLabs TTS unless the consolidated stack's quality is acceptable for your product.
+
+**If you are building a new multilingual voice application:**
+Realtime Translate is worth evaluating before assembling a custom translation pipeline. The 13 output languages may not cover all your markets, but for common language pairs it removes meaningful infrastructure complexity.
+
+**If you are a business owner considering a voice agent (not a developer):**
+This announcement does not change the practical landscape for you. ElevenAgents remains the clearest path to deploying a natural-sounding voice agent without engineering resource.
+
+<AffiliateLink provider="ElevenLabs" href="https://try.elevenlabs.io/wm6bdi8z8jza" variant="button">ElevenAgents: deploy a business voice agent in under an hour — no developer needed</AffiliateLink>
+
+*Published May 2026 based on OpenAI's release announcements. Model availability and pricing subject to change — check OpenAI's developer documentation for current details.*
+
+---
+## Prompt used
+Research and write an explainer/news post about OpenAI's new voice models released May 2026 (gpt-realtime-2, Realtime Translate, Realtime Whisper) for aivoicereview — covering what each model does, pricing, and what it means for voice developers. Match existing post format.
